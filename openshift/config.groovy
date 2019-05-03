@@ -76,6 +76,9 @@ app {
         ssoURL = "${vars.deployment.ssoURL}"
         ssoClient = "${vars.deployment.ssoClient}"
         ssoRealm = "${vars.deployment.ssoRealm}"
+        matomoURL = "${vars.deployment.matomoURL}"
+        matomoSiteURL = "${vars.deployment.matomoSiteURL}"
+        matomoSiteId = "${vars.deployment.matomoSiteId}"
 
         timeoutInSeconds = 60*20 // 20 minutes
         templates = [
@@ -88,7 +91,10 @@ app {
                         'HOST': app.deployment.host,
                         'SSO_BASE_URL_VALUE': app.deployment.ssoURL,
                         'SSO_CLIENT_ID_VALUE': app.deployment.ssoClient,
-                        'SSO_REALM_NAME_VALUE': app.deployment.ssoRealm
+                        'SSO_REALM_NAME_VALUE': app.deployment.ssoRealm,
+                        'MATOMO_URL' : app.deployment.matomoURL,
+                        'MATOMO_SITE_URL' : app.deployment.matomoSiteURL,
+                        'MATOMO_SITE_ID' : app.deployment.matomoSiteId
                     ]
                 ]
         ]
@@ -111,6 +117,9 @@ environments {
                 ssoURL = "https://sso-dev.pathfinder.gov.bc.ca"
                 ssoClient = "devhub-web-${opt.'pr'}"
                 ssoRealm = "devhub"
+                matomoURL = "https://matomo-devhub-dev.pathfinder.gov.bc.ca"
+                matomoSiteURL = "https://dev-devhub.pathfinder.gov.bc.ca" // todo probably should make this dynamic based on PR
+                matomoSiteId = '1' // events from all dev deployments will appear under the same site id, which we will have to pre-provision
             }
         }
     }
@@ -129,6 +138,9 @@ environments {
                 ssoURL = "https://sso-test.pathfinder.gov.bc.ca"
                 ssoClient = "devhub-web"
                 ssoRealm = "devhub"
+                matomoURL = "https://matomo-devhub-test.pathfinder.gov.bc.ca"
+                matomoSiteURL = "https://devhub-static-test-devhub-test.pathfinder.gov.bc.ca"
+                matomoSiteId = '1' // events from all test deployments will appear under the same site id, which we will have to pre-provision
             }
         }
     }
@@ -148,6 +160,9 @@ environments {
                 ssoURL = "https://sso.pathfinder.gov.bc.ca"
                 ssoClient = "devhub-web"
                 ssoRealm = "devhub"
+                matomoURL = "https://matomo-devhub-prod.pathfinder.gov.bc.ca" // todo do we want another name like "analytics.developer.gov.bc.ca"?
+                matomoSiteURL = "https://developer.gov.bc.ca"
+                matomoSiteId = '1' // events from all test deployments will appear under the same site id, which we will have to pre-provision
             }
         }
     }
