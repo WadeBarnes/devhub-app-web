@@ -171,4 +171,19 @@ parameters:
   name: NODE_JS_VERSION
   required: true
   value: '10'
-  
+- description: Location of the Matomo server that the app should post events to.
+  displayName: Matomo URL
+  name: MATOMO_URL
+  required: false
+  value: ''
+- description: URL (route) where this app is deployed
+  displayName: Matomo URL
+  name: MATOMO_SITE_URL
+  required: false
+  value: ''
+- description: Identifier for this site within Matomo
+  displayName: Matomo URL
+  name: MATOMO_SITE_ID
+  required: false
+  value: '1'
+
