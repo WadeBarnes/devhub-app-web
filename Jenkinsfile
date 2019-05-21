@@ -25,11 +25,11 @@ pipeline {
       }
     }
 
-    stage('Deploy (TOOLS)') {
+    stage('Deploy Matomo') {
           agent { label 'deploy' }
           steps {
             echo "Deploying services in TOOLS..."
-            sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=openshift/config.groovy --pr=${CHANGE_ID} --env=tools"
+            sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=openshift/config-matomo.groovy --pr=${CHANGE_ID} --env=prod"
           }
         }
 
