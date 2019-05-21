@@ -24,6 +24,15 @@ pipeline {
         sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s build --config=openshift/config.groovy --pr=${CHANGE_ID}"
       }
     }
+
+    stage('Deploy (TOOLS)') {
+          agent { label 'deploy' }
+          steps {
+            echo "Deploying services in TOOLS..."
+            sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=openshift/config.groovy --pr=${CHANGE_ID} --env=tools"
+          }
+        }
+
     stage('Deploy (DEV)') {
       agent { label 'deploy' }
       steps {
